@@ -21,7 +21,9 @@ Linux-first Subsonic/Navidrome player for your desktop
 - Play, pause, resume, next, previous, seek, volume, mute
 - Shuffle, Repeat (track), and a persistent queue
 - Album and playlist playback queue the whole set
+- **Marquee song title** — long titles scroll in the player bar instead of being clipped, and never overlap the controls
 - Discord "Listening to" throttled playback notifications (optional)
+- Desktop notification when the next song auto-starts (toggle in Settings)
 
 **Desktop integration (Linux)**
 - **Custom themed title bar** — follows the active theme, with Minimize / Maximize-Restore / Close (hides to tray)
@@ -31,14 +33,21 @@ Linux-first Subsonic/Navidrome player for your desktop
 - Discord Rich Presence built in — no application registration needed (optional custom application ID supported; first line, second line, timer, and artwork all configurable)
 - Album tracklist numbers use real metadata track numbers
 - Now-playing reports to Navidrome (scrobbles) with play count sync
+- **Omarchy theme sync** — an "Omarchy (system)" theme that mirrors your system theme color by color and follows it live
+
+**Settings & server**
+- Sidebar-only Settings entry (no top-bar gear); the window is drag-movable by its header and resizable from the corner grip (size remembered)
+- **Server info card** from the profile chip in the sidebar — read-only view of the active server (profile, URL, username)
+- "Add Navidrome server" dialog for connecting additional or replacement servers
+- **Display options** — Text & UI size (85%–150%) for large/high-resolution monitors and a Wide layout for ultrawide screens (removes the 1400px content cap)
 
 **Visualizer**
-- Real Web Audio spectrum analysis when available (bars, mirror, wave modes)
-- Smooth simulated fallback visuals while playing if stream capture isn't available
-- Toggle from the player bar, remember between launches
+- Full-screen animated visualizer with three modes: **Mirror**, **Wave**, and **Donut** — a spinning, beat-pulsing ASCII torus in classic terminal style
+- Keyboard-friendly mode switcher at the bottom of the visualizer; Esc exits
+- Toggle from the player bar, mode and on/off state remembered between launches
 
 **Themes**
-- Midnight (default), Light, Violet, **Tokyo Night**, **Catppuccin** — full-app theming including the title bar, player, and visualizer colors
+- Midnight (default), Light, Violet, **Tokyo Night**, **Catppuccin**, and Omarchy-to-system sync — full-app theming including the title bar, player, and visualizer colors
 
 **Security & data**
 - Passwords stored in the OS keyring (freedesktop Secret Service — GNOME Keyring/KWallet); automatic migration of older profiles; graceful plaintext fallback if no Secret Service exists
@@ -88,7 +97,7 @@ Installs the binary to `~/.local/bin/ghoztkat`, a launcher menu entry ("GhoztKat
 
 ### 4. Connect your server
 
-Open **Settings** (sidebar or gear icon) and enter your Navidrome URL, username, and password. Everything is stored in your keyring and app profile — not in the repo. On every future start, GhoztKat reconnects automatically.
+Click the **server card** in the top of the sidebar (or, if none is connected, the profile chip) and choose **Add server** — enter your Navidrome URL, username, and password. Everything is stored in your keyring and app profile — not in the repo. On every future start, GhoztKat reconnects automatically.
 
 ### Update / Uninstall
 
@@ -146,7 +155,6 @@ install.sh/uninstall.sh Native user-local install helpers
 
 - Offline downloads
 - Playlist editing
-- Additional visualizer modes
 - Prebuilt release pipeline (deb/rpm/AppImage + CI)
 
 ## License
