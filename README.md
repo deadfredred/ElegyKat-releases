@@ -108,9 +108,9 @@ rm -rf ~/.local/share/com.ghoztkat.player
 # "GhoztKat" keyring entry (seahorse or `secret-tool clear`).
 ```
 
-## Building & running from source (requires repo access)
+## Building from source (for development)
 
-The GhoztKat source is private, so this path is for contributors/developers only. Same requirements as above plus `nodejs`, `npm`, and `base-devel`.
+Same requirements as the AppImage above plus `nodejs`, `npm`, and `base-devel`.
 
 ```bash
 git clone https://github.com/deadfredred/GhoztKat.git
@@ -174,4 +174,4 @@ install.sh/uninstall.sh Native user-local install helpers
 
 ## License
 
-Personal project — review the code before deploying publicly.
+© 2026 deadfredred. All rights reserved.
