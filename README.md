@@ -57,7 +57,7 @@ Linux-first Subsonic/Navidrome player for your desktop
 - The **Discord desktop app** if you want Rich Presence
 - Linux with GTK3, WebKitGTK 4.1, GStreamer plugins, and a tray-capable shell for menus
 
-## Install (Arch Linux)
+## Install
 
 Works on Arch, Manjaro, EndeavourOS, and Hyprland/Omarchy-style setups — and on recent Debian/Fedora releases (distros older than the release's build baseline may reject it; the AppImage also needs `webkit2gtk-4.1` and GStreamer plugins from your package manager).
 
