@@ -4,8 +4,6 @@
 
 Linux-first Subsonic/Navidrome player for your desktop
 
-
-
 ## Features
 
 **Library**
@@ -107,71 +105,3 @@ rm -rf ~/.local/share/com.ghoztkat.player
 # uninstall entirely: delete the AppImage, plus the data folder above and the
 # "GhoztKat" keyring entry (seahorse or `secret-tool clear`).
 ```
-
-## Building from source (for development)
-
-Same requirements as the AppImage above plus `nodejs`, `npm`, and `base-devel`.
-
-```bash
-git clone https://github.com/deadfredred/GhoztKat.git
-cd GhoztKat
-npm install
-npm run build && cargo build --release --features custom-protocol --manifest-path src-tauri/Cargo.toml
-./start.sh       # runs the release build directly
-```
-
-User-local install instead of `./start.sh`:
-
-```bash
-./install.sh     # installs to ~/.local/bin + menu entry + icons
-./uninstall.sh   # remove binary, menu entry and icons
-```
-
-Note: installs via `install.sh` use the raw binary and do **not** self-update — re-run the build + `./install.sh` after pulling updates.
-
-## Development mode
-
-```bash
-npm run tauri dev
-```
-
-## Publishing updates (AppImage + auto-updater)
-
-Installed apps check GitHub Releases on launch and offer a one-click update.
-Builds are signed with the keypair at `~/.tauri/ghoztkat.key` — **keep it safe; losing it breaks the update chain.**
-
-Requirements: `gh` CLI (logged in), `patchelf` (in `~/.local/bin` on Arch without the system package).
-
-```bash
-./scripts/release.sh 0.1.1 "What changed"   # bump version everywhere, build, sign, publish
-./scripts/release.sh                        # re-release the current version
-```
-
-The script creates a release in the public [GhoztKat-releases](https://github.com/deadfredred/GhoztKat-releases) repo
-containing the signed AppImage and `latest.json`; running installs pick it up automatically on next launch.
-Source stays private here. Bundles also land locally in
-`src-tauri/target/release/bundle/` (`deb/`, `rpm/`, `appimage/`).
-
-Note: AppImages are best built on an older base (e.g. Debian 12 / Ubuntu 22.04) so the
-bundled glibc doesn't exclude older distros.
-
-## Project layout
-
-```
-src/                    React frontend (UI, playback, visualizer, Subsonic API)
-src-tauri/              Rust shell: MPRIS media keys, tray menu, Discord IPC, keyring
-scripts/release.sh      One-command signed release to GitHub Releases
-public/                 Assets bundled with the app
-start.sh                Quick launcher for the compiled build
-install.sh/uninstall.sh Native user-local install helpers
-```
-
-## Roadmap
-
-- Offline downloads
-- Playlist editing
-- Prebuilt release pipeline (deb/rpm/AppImage + CI)
-
-## License
-
-© 2026 deadfredred. All rights reserved.
