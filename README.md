@@ -59,66 +59,81 @@ Linux-first Subsonic/Navidrome player for your desktop
 - The **Discord desktop app** if you want Rich Presence
 - Linux with GTK3, WebKitGTK 4.1, GStreamer plugins, and a tray-capable shell for menus
 
-## Install on Arch Linux
+## Install (Arch Linux)
 
 Works on Arch, Manjaro, EndeavourOS, and Hyprland/Omarchy-style setups.
 
 ### 1. System dependencies
 
 ```bash
-sudo pacman -S --needed base-devel git npm nodejs \
+sudo pacman -S --needed \
   webkit2gtk-4.1 gtk3 pango cairo gdk-pixbuf2 \
   gst-plugins-good gst-plugins-base gst-libav \
   libayatana-appindicator gnome-keyring
 ```
 
+- `webkit2gtk-4.1` — the web view the app is built on
 - `gst-libav`/`gst-plugins-good` — audio decoding
 - `libayatana-appindicator` — tray icon
 - `gnome-keyring` — secure password storage (or any Secret Service implementation)
 
-### 2. Build
+### 2. Download & run the AppImage
+
+Grab the **AppImage** from the [latest release](https://github.com/deadfredred/GhoztKat-releases/releases/latest) (`GhoztKat_<version>_amd64.AppImage`):
+
+```bash
+mkdir -p ~/Applications
+mv ~/Downloads/GhoztKat_*.AppImage ~/Applications/ghoztkat.AppImage
+chmod +x ~/Applications/ghoztkat.AppImage
+~/Applications/ghoztkat.AppImage
+```
+
+- The AppImage updates itself: launching it checks GitHub Releases and offers a one-click update signed against the app's key — no manual re-download needed.
+- To add it to your launcher menu, use any launcher that builds entries from AppImages (e.g. [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher)) or create a `.desktop` file pointing at `~/Applications/ghoztkat.AppImage`.
+
+### 3. Connect your server
+
+Click the **profile chip** at the top of the sidebar and choose **Add server** — enter your Navidrome URL, username, and password. Everything is stored in your keyring and app profile — not in the repo. On every future start, GhoztKat reconnects automatically.
+
+### Update / Uninstall (AppImage)
+
+```bash
+# update: the app offers a one-click update on launch, or:
+mv ~/Downloads/GhoztKat_*.AppImage ~/Applications/ghoztkat.AppImage
+
+# remove the app data except for your server credentials, to start from scratch:
+rm -rf ~/.local/share/com.ghoztkat.player
+
+# uninstall entirely: delete the AppImage, plus the data folder above and the
+# "GhoztKat" keyring entry (seahorse or `secret-tool clear`).
+```
+
+## Building & running from source (requires repo access)
+
+The GhoztKat source is private, so this path is for contributors/developers only. Same requirements as above plus `nodejs`, `npm`, and `base-devel`.
 
 ```bash
 git clone https://github.com/deadfredred/GhoztKat.git
 cd GhoztKat
 npm install
 npm run build && cargo build --release --features custom-protocol --manifest-path src-tauri/Cargo.toml
-```
-
-(First build takes a couple of minutes.)
-
-### 3. Install (user-local, no root)
-
-```bash
-./install.sh
-```
-
-Installs the binary to `~/.local/bin/ghoztkat`, a launcher menu entry ("GhoztKat"), and icons. Launch from your application menu, or run `ghoztkat`.
-
-### 4. Connect your server
-
-Click the **server card** in the top of the sidebar (or, if none is connected, the profile chip) and choose **Add server** — enter your Navidrome URL, username, and password. Everything is stored in your keyring and app profile — not in the repo. On every future start, GhoztKat reconnects automatically.
-
-### Update / Uninstall
-
-```bash
-git pull && npm install
-npm run build && cargo build --release --features custom-protocol --manifest-path src-tauri/Cargo.toml
-./install.sh            # refresh the installed copy
-./uninstall.sh          # remove binary, menu entry and icons
-```
-
-To wipe personal settings too, delete `~/.local/share/com.ghoztkat.player/` and the "GhoztKat" entry from your keyring (`seahorse` or `secret-tool clear`).
-
-## Building & running from source (any distro)
-
-```bash
-npm install
-npm run build
-cargo build --release --features custom-protocol --manifest-path src-tauri/Cargo.toml
 ./start.sh       # runs the release build directly
 ```
-or in dev mode: `npm run tauri dev`.
+
+User-local install instead of `./start.sh`:
+
+```bash
+./install.sh     # installs to ~/.local/bin + menu entry + icons
+./uninstall.sh   # remove binary, menu entry and icons
+```
+
+Note: installs via `install.sh` use the raw binary and do **not** self-update — re-run the build + `./install.sh` after pulling updates.
+
+## Development mode
+
+```bash
+npm run tauri dev
+```
 
 ## Publishing updates (AppImage + auto-updater)
 
