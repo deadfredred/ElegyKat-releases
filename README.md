@@ -59,7 +59,7 @@ Linux-first Subsonic/Navidrome player for your desktop
 
 ## Install (Arch Linux)
 
-Works on Arch, Manjaro, EndeavourOS, and Hyprland/Omarchy-style setups.
+Works on Arch, Manjaro, EndeavourOS, and Hyprland/Omarchy-style setups — and on recent Debian/Fedora releases (distros older than the release's build baseline may reject it; the AppImage also needs `webkit2gtk-4.1` and GStreamer plugins from your package manager).
 
 ### 1. System dependencies
 
