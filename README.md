@@ -1,6 +1,6 @@
-# GhoztKat
+# ElegyKat
 
-**[⬇ Download the latest release](https://github.com/deadfredred/GhoztKat-releases/releases/latest)** · [Release notes](https://github.com/deadfredred/GhoztKat-releases/releases)
+**[⬇ Download the latest release](https://github.com/deadfredred/ElegyKat-releases/releases/latest)** · [Release notes](https://github.com/deadfredred/ElegyKat-releases/releases)
 
 Linux-first Subsonic/Navidrome player for your desktop
 
@@ -26,8 +26,8 @@ Linux-first Subsonic/Navidrome player for your desktop
 **Desktop integration (Linux)**
 - **Custom themed title bar** — follows the active theme, with Minimize / Maximize-Restore / Close (hides to tray)
 - **System tray icon** with right-click menu: media controls, Show / Hide window, Maximize / Restore, Quit; left-click toggles show/hide
-- **MPRIS media keys** — keyboard play/pause/next/previous, desktop media widgets, and `playerctl`-style tools all control GhoztKat, even while hidden
-- Taskbar/launcher identity: shows under your app launcher with the GhoztKat logo
+- **MPRIS media keys** — keyboard play/pause/next/previous, desktop media widgets, and `playerctl`-style tools all control ElegyKat, even while hidden
+- Taskbar/launcher identity: shows under your app launcher with the ElegyKat logo
 - Discord Rich Presence built in — no application registration needed (optional custom application ID supported; first line, second line, timer, and artwork all configurable)
 - Album tracklist numbers use real metadata track numbers
 - Now-playing reports to Navidrome (scrobbles) with play count sync
@@ -77,31 +77,31 @@ sudo pacman -S --needed \
 
 ### 2. Download & run the AppImage
 
-Grab the **AppImage** from the [latest release](https://github.com/deadfredred/GhoztKat-releases/releases/latest) (`GhoztKat_<version>_amd64.AppImage`):
+Grab the **AppImage** from the [latest release](https://github.com/deadfredred/ElegyKat-releases/releases/latest) (`ElegyKat_<version>_amd64.AppImage`):
 
 ```bash
 mkdir -p ~/Applications
-mv ~/Downloads/GhoztKat_*.AppImage ~/Applications/ghoztkat.AppImage
-chmod +x ~/Applications/ghoztkat.AppImage
-~/Applications/ghoztkat.AppImage
+mv ~/Downloads/ElegyKat_*.AppImage ~/Applications/elegykat.AppImage
+chmod +x ~/Applications/elegykat.AppImage
+~/Applications/elegykat.AppImage
 ```
 
 - The AppImage updates itself: launching it checks GitHub Releases and offers a one-click update signed against the app's key — no manual re-download needed.
-- To add it to your launcher menu, use any launcher that builds entries from AppImages (e.g. [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher)) or create a `.desktop` file pointing at `~/Applications/ghoztkat.AppImage`.
+- To add it to your launcher menu, use any launcher that builds entries from AppImages (e.g. [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher)) or create a `.desktop` file pointing at `~/Applications/elegykat.AppImage`.
 
 ### 3. Connect your server
 
-Click the **profile chip** at the top of the sidebar and choose **Add server** — enter your Navidrome URL, username, and password. Everything is stored in your keyring and app profile — not in the repo. On every future start, GhoztKat reconnects automatically.
+Click the **profile chip** at the top of the sidebar and choose **Add server** — enter your Navidrome URL, username, and password. Everything is stored in your keyring and app profile — not in the repo. On every future start, ElegyKat reconnects automatically.
 
 ### Update / Uninstall (AppImage)
 
 ```bash
 # update: the app offers a one-click update on launch, or:
-mv ~/Downloads/GhoztKat_*.AppImage ~/Applications/ghoztkat.AppImage
+mv ~/Downloads/ElegyKat_*.AppImage ~/Applications/elegykat.AppImage
 
 # remove the app data except for your server credentials, to start from scratch:
-rm -rf ~/.local/share/com.ghoztkat.player
+rm -rf ~/.local/share/com.elegykat.player
 
 # uninstall entirely: delete the AppImage, plus the data folder above and the
-# "GhoztKat" keyring entry (seahorse or `secret-tool clear`).
+# "ElegyKat" keyring entry (seahorse or `secret-tool clear`).
 ```
