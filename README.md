@@ -7,21 +7,26 @@ Linux-first Subsonic/Navidrome player for your desktop
 ## Features
 
 **Library**
-- Full-library browsing: Albums, Artists, Songs, Playlists — paginated so any library size loads
+- Full-library browsing: Albums, Artists, Songs, Playlists — paginated so any library size loads smoothly (long lists render progressively and keep filling as you scroll)
 - Home screen with recently played and curated songs
-- Library-wide search in every view
-- Real album artwork everywhere (album art, artist art, playlists) with letter-tile fallbacks
+- Library-wide search in every view (150ms-debounced for typing comfort)
+- Real album artwork everywhere (album art, artist art, playlists) with letter-tile fallbacks — artwork requests are cached so scrolling a big library no longer re-downloads covers
 - Real play counts displayed per song
 - **Album grid with inline expansion** — click an album, its tracklist opens right below it in the grid: header with artwork, year, song count, Play and Shuffle, and a playable tracklist with track numbers
 - Favorites and Recently Played views (loaded on demand)
+- Working top-bar Back / Forward buttons with real navigation history
 
 **Playback**
 - Play, pause, resume, next, previous, seek, volume, mute
 - Shuffle, Repeat (track), and a persistent queue
 - Album and playlist playback queue the whole set
+- Smooth gapless track transitions with next-track preloading
+- **Non-scratching seekbar** — scrubbing previews; the seek applies once on release, so dragging never chops the audio
+- Render pipeline built for large libraries: the playback clock updates only the seekbar, so the whole app stops repainting 4x per second during playback
 - **Marquee song title** — long titles scroll in the player bar instead of being clipped, and never overlap the controls
 - Discord "Listening to" throttled playback notifications (optional)
 - Desktop notification when the next song auto-starts (toggle in Settings)
+- Keyboard shortcuts: Space play/pause, ←/→ seek, Shift+←/→ skip, ↑/↓ volume, `/` or Ctrl+K search, Esc closes overlays
 
 **Desktop integration (Linux)**
 - **Custom themed title bar** — follows the active theme, with Minimize / Maximize-Restore / Close (hides to tray)
@@ -37,7 +42,12 @@ Linux-first Subsonic/Navidrome player for your desktop
 - Sidebar-only Settings entry (no top-bar gear); the window is drag-movable by its header and resizable from the corner grip (size remembered)
 - **Server info card** from the profile chip in the sidebar — read-only view of the active server (profile, URL, username)
 - "Add Navidrome server" dialog for connecting additional or replacement servers
-- **Display options** — Text & UI size (85%–150%) for large/high-resolution monitors and a Wide layout for ultrawide screens (removes the 1400px content cap)
+- **Display options** — Text & UI size (85%–150%) for large/high-resolution monitors, a Wide layout for ultrawide screens (removes the 1400px content cap), and **Tiling window manager mode** — compact always-on layout for half/quarter tiles: icon-only sidebar, tighter player bar, and grids/hero that reflow to any width (narrow windows adapt automatically too)
+
+**Performance & startup**
+- Fonts are bundled locally — no Google Fonts network request, faster and more private startup
+- Cover-art URLs are cached per image, so webview image caching actually works across re-renders
+- Empty-start render trimmed: pass on rendering, immediate first paint
 
 **Visualizer**
 - Full-screen animated visualizer with three modes: **Mirror**, **Wave**, and **Donut** — a spinning, beat-pulsing ASCII torus in classic terminal style
@@ -87,6 +97,7 @@ chmod +x ~/Applications/elegykat.AppImage
 ```
 
 - The AppImage updates itself: launching it checks GitHub Releases and offers a one-click update signed against the app's key — no manual re-download needed.
+- **Note:** builds older than v0.1.10 (September 2026) were signed with a now-retired key and no longer offer automatic updates. Those installs need one manual download of the latest release; after that, self-updating works normally. Related releases carry a notice on their release page.
 - To add it to your launcher menu, use any launcher that builds entries from AppImages (e.g. [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher)) or create a `.desktop` file pointing at `~/Applications/elegykat.AppImage`.
 
 ### 3. Connect your server
