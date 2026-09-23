@@ -59,7 +59,7 @@ Linux-first Subsonic/Navidrome player for your desktop
 
 ## Install
 
-Works on Arch, Manjaro, EndeavourOS, and Hyprland/Omarchy-style setups — and on recent Debian/Fedora releases (distros older than the release's build baseline may reject it; the AppImage also needs `webkit2gtk-4.1` and GStreamer plugins from your package manager).
+Works on Arch, Manjaro, EndeavourOS, and Hyprland/Omarchy-style setups.
 
 ### 1. System dependencies
 
@@ -105,3 +105,10 @@ rm -rf ~/.local/share/com.elegykat.player
 # uninstall entirely: delete the AppImage, plus the data folder above and the
 # "ElegyKat" keyring entry (seahorse or `secret-tool clear`).
 ```
+
+## Roadmap
+
+- Offline downloads
+- Playlist editing
+- Working Debian/Fedora packages — the current deb/rpm bundles can be rejected on some distros (older-than-build-baseline glibc/libraries), and AppImage installs there also need `webkit2gtk-4.1` and GStreamer plugins from the package manager. Fix: rebuild on an older base (e.g. Debian 12 / Ubuntu 22.04) so the app runs everywhere
+- Prebuilt release pipeline (deb/rpm/AppImage + CI)
