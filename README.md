@@ -69,9 +69,11 @@ Linux-first Subsonic/Navidrome player for your desktop
 
 ## Install
 
-Works on Arch, Manjaro, EndeavourOS, and Hyprland/Omarchy-style setups.
+Works on Arch, Manjaro, EndeavourOS, Hyprland/Omarchy-style setups, **and** Mint/Ubuntu/Debian-family desktops (Cinnamon, Xfce, …).
 
 ### 1. System dependencies
+
+**Arch-family:**
 
 ```bash
 sudo pacman -S --needed \
@@ -85,9 +87,19 @@ sudo pacman -S --needed \
 - `libayatana-appindicator` — tray icon
 - `gnome-keyring` — secure password storage (or any Secret Service implementation)
 
-### 2. Download & run the AppImage
+**Mint 22 / Ubuntu 24.04+ / Debian-family:**
 
-Grab the **AppImage** from the [latest release](https://github.com/deadfredred/ElegyKat-releases/releases/latest) (`ElegyKat_<version>_amd64.AppImage`):
+```bash
+sudo apt install -y webkit2gtk-4.1 gstreamer1.0-plugins-good gstreamer1.0-plugins-base gstreamer1.0-libav
+```
+
+- Preinstalled on Mint 22.3 — this section matters on trimmed installs only.
+
+### 2. Download & install
+
+Grab the AppImage **or** the `.deb` from the [latest release](https://github.com/deadfredred/ElegyKat-releases/releases/latest):
+
+**AppImage** (`ElegyKat_<version>_amd64.AppImage`) — portable, for Arch/Manjaro/EndeavourOS/Hyprland-style setups:
 
 ```bash
 mkdir -p ~/Applications
@@ -96,9 +108,15 @@ chmod +x ~/Applications/elegykat.AppImage
 ~/Applications/elegykat.AppImage
 ```
 
+**.deb** (`ElegyKat_<version>_amd64.deb`) — for Mint/Ubuntu/Debian-family (Cinnamon and friends):
+
+```bash
+sudo dpkg -i ~/Downloads/ElegyKat_*.deb   # or double-click it in the file manager
+```
+
 - The AppImage updates itself: launching it checks GitHub Releases and offers a one-click update signed against the app's key — no manual re-download needed.
 - **Note:** builds older than v0.1.10 (September 2026) were signed with a now-retired key and no longer offer automatic updates. Those installs need one manual download of the latest release; after that, self-updating works normally. Related releases carry a notice on their release page.
-- To add it to your launcher menu, use any launcher that builds entries from AppImages (e.g. [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher)) or create a `.desktop` file pointing at `~/Applications/elegykat.AppImage`.
+- To add the AppImage to your launcher menu, use any launcher that builds entries from AppImages (e.g. [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher)) or create a `.desktop` file pointing at `~/Applications/elegykat.AppImage`.
 
 ### 3. Connect your server
 
@@ -117,11 +135,20 @@ rm -rf ~/.local/share/com.elegykat.player
 # "ElegyKat" keyring entry (seahorse or `secret-tool clear`).
 ```
 
+### Update / Uninstall (.deb)
+
+```bash
+sudo dpkg -i ~/Downloads/ElegyKat_*.deb          # update in place
+sudo apt remove --purge elegykat && sudo apt autoremove   # uninstall
+rm -rf ~/.local/share/com.elegykat.player                # remove app data
+```
+
 ## Roadmap
 
 - Offline downloads
 - Playlist editing
-- Working Debian/Fedora packages — the current deb/rpm bundles can be rejected on some distros (older-than-build-baseline glibc/libraries), and AppImage installs there also need `webkit2gtk-4.1` and GStreamer plugins from the package manager. Fix: rebuild on an older base (e.g. Debian 12 / Ubuntu 22.04) so the app runs everywhere
+- Fedora/RPM packaging
+- Debian-family AppImage — webkit-inside-AppImage locks up on some Mint/Cinnamon hosts; use the `.deb` there (done) and split a debian-base AppImage if demand appears
 - Prebuilt release pipeline (deb/rpm/AppImage + CI)
 
 ## Support ElegyKat
