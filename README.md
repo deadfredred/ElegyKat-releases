@@ -1,8 +1,11 @@
+
 # ElegyKat
 
 **[⬇ Download the latest release](https://github.com/deadfredred/ElegyKat-releases/releases/latest)** · [Release notes](https://github.com/deadfredred/ElegyKat-releases/releases)
 
 Linux-first Subsonic/Navidrome player for your desktop
+
+<img width="2518" height="1368" alt="screenshot-2026-09-23_14-50-00" src="https://github.com/user-attachments/assets/155f37f4-fbb2-48fe-a9ce-a01b9b031eeb" />
 
 ## Features
 
@@ -56,6 +59,11 @@ Linux-first Subsonic/Navidrome player for your desktop
 
 **Themes**
 - Midnight (default), Light, Violet, **Tokyo Night**, **Catppuccin**, and Omarchy-to-system sync — full-app theming including the title bar, player, and visualizer colors
+
+
+
+https://github.com/user-attachments/assets/28df4e33-972c-4aa5-8c96-912af957e3c5
+
 
 **Security & data**
 - Passwords stored in the OS keyring (freedesktop Secret Service — GNOME Keyring/KWallet); automatic migration of older profiles; graceful plaintext fallback if no Secret Service exists
@@ -121,6 +129,9 @@ sudo dpkg -i ~/Downloads/ElegyKat_*.deb   # or double-click it in the file manag
 ### 3. Connect your server
 
 Click the **profile chip** at the top of the sidebar and choose **Add server** — enter your Navidrome URL, username, and password. Everything is stored in your keyring and app profile — not in the repo. On every future start, ElegyKat reconnects automatically.
+
+<img width="655" height="568" alt="screenshot-2026-09-23_14-51-18" src="https://github.com/user-attachments/assets/ba0c7f90-16a7-42c4-b3a6-3c8299cfaf98" />
+
 
 ### Update / Uninstall (AppImage)
 
