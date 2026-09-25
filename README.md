@@ -57,6 +57,10 @@ Linux-first Subsonic/Navidrome player for your desktop
 - Keyboard-friendly mode switcher at the bottom of the visualizer; Esc exits
 - Toggle from the player bar, mode and on/off state remembered between launches
 
+
+https://github.com/user-attachments/assets/f27b6b13-f315-4411-a765-8f14321ffc77
+
+
 **Themes**
 - Midnight (default), Light, Violet, **Tokyo Night**, **Catppuccin**, and Omarchy-to-system sync — full-app theming including the title bar, player, and visualizer colors
 
